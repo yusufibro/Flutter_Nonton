@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_nonton/models/movie_model.dart';
 import 'package:flutter_nonton/theme.dart';
 import 'package:flutter_nonton/ui/detail_page.dart';
 import 'package:intl/intl.dart';
 
 class MovieCarouselItem extends StatelessWidget {
-  final String imageUrl;
-  final String title;
-  final DateTime releaseDate;
-  final double rating;
+  // final String imageUrl;
+  // final String title;
+  // final DateTime releaseDate;
+  // final double rating;
+
+  final MovieModel movie;
 
   const MovieCarouselItem({
     Key? key,
-    required this.imageUrl,
-    required this.title,
-    required this.releaseDate,
-    required this.rating,
+    // required this.imageUrl,
+    // required this.title,
+    // required this.releaseDate,
+    // required this.rating,
+    required this.movie,
   }) : super(key: key);
 
   @override
@@ -42,8 +46,8 @@ class MovieCarouselItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(21),
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage(
-                    imageUrl,
+                  image: NetworkImage(
+                    movie.posterPath,
                   ),
                 ),
               ),
@@ -53,31 +57,35 @@ class MovieCarouselItem extends StatelessWidget {
             ),
             Row(
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: blackTextStyle.copyWith(
-                        fontSize: 20,
-                        fontWeight: extraBold,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        movie.title,
+                        style: blackTextStyle.copyWith(
+                          fontSize: 20,
+                          fontWeight: extraBold,
+                        ),
+                        overflow: TextOverflow.ellipsis,
                       ),
-                    ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Text(
-                      DateFormat('MMM dd, yyyy').format(releaseDate),
-                      style: greyTextStyle.copyWith(
-                        fontSize: 16,
+                      SizedBox(
+                        height: 4,
                       ),
-                    ),
-                  ],
+                      Text(
+                        DateFormat('MMM dd, yyyy').format(movie.releaseDate),
+                        style: greyTextStyle.copyWith(
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                Spacer(),
                 Icon(
                   Icons.star,
-                  color: rating >= 2 ? Color(0xffFFAB2E) : lightGreyColor,
+                  color: movie.voteAverage >= 2
+                      ? Color(0xffFFAB2E)
+                      : lightGreyColor,
                   size: 18,
                 ),
                 SizedBox(
@@ -85,7 +93,9 @@ class MovieCarouselItem extends StatelessWidget {
                 ),
                 Icon(
                   Icons.star,
-                  color: rating >= 4 ? Color(0xffFFAB2E) : lightGreyColor,
+                  color: movie.voteAverage >= 4
+                      ? Color(0xffFFAB2E)
+                      : lightGreyColor,
                   size: 18,
                 ),
                 SizedBox(
@@ -93,7 +103,9 @@ class MovieCarouselItem extends StatelessWidget {
                 ),
                 Icon(
                   Icons.star,
-                  color: rating >= 6 ? Color(0xffFFAB2E) : lightGreyColor,
+                  color: movie.voteAverage >= 6
+                      ? Color(0xffFFAB2E)
+                      : lightGreyColor,
                   size: 18,
                 ),
                 SizedBox(
@@ -101,7 +113,9 @@ class MovieCarouselItem extends StatelessWidget {
                 ),
                 Icon(
                   Icons.star,
-                  color: rating >= 8 ? Color(0xffFFAB2E) : lightGreyColor,
+                  color: movie.voteAverage >= 8
+                      ? Color(0xffFFAB2E)
+                      : lightGreyColor,
                   size: 18,
                 ),
                 SizedBox(
@@ -109,7 +123,9 @@ class MovieCarouselItem extends StatelessWidget {
                 ),
                 Icon(
                   Icons.star,
-                  color: rating >= 10 ? Color(0xffFFAB2E) : lightGreyColor,
+                  color: movie.voteAverage >= 10
+                      ? Color(0xffFFAB2E)
+                      : lightGreyColor,
                   size: 18,
                 ),
                 SizedBox(

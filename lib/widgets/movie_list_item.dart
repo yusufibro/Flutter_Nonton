@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_nonton/models/movie_list_model.dart';
 import 'package:flutter_nonton/ui/detail_page.dart';
 import 'package:intl/intl.dart';
 
 import '../theme.dart';
 
 class MovieListItem extends StatelessWidget {
-  final String imageUrl;
-  final String title;
-  final DateTime releaseDate;
-  final double rating;
+  // final String imageUrl;
+  // final String title;
+  // final DateTime releaseDate;
+  // final double rating;
+
+  final MovieListModel movieList;
 
   const MovieListItem({
     Key? key,
-    required this.imageUrl,
-    required this.title,
-    required this.releaseDate,
-    required this.rating,
+    // required this.imageUrl,
+    // required this.title,
+    // required this.releaseDate,
+    // required this.rating,
+    required this.movieList,
   }) : super(key: key);
 
   @override
@@ -47,79 +51,91 @@ class MovieListItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(21),
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage(
-                    imageUrl,
+                  image: NetworkImage(
+                    movieList.posterPath,
                   ),
                 ),
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: blackTextStyle.copyWith(
-                    fontSize: 20,
-                    fontWeight: extraBold,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    movieList.title,
+                    style: blackTextStyle.copyWith(
+                      fontSize: 20,
+                      fontWeight: extraBold,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  DateFormat('MMM dd, yyyy').format(releaseDate),
-                  style: greyTextStyle.copyWith(
-                    fontSize: 16,
+                  SizedBox(
+                    height: 4,
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.star,
-                      color: rating >= 2 ? Color(0xffFFAB2E) : lightGreyColor,
-                      size: 18,
+                  Text(
+                    DateFormat('MMM dd, yyyy').format(movieList.releaseDate),
+                    style: greyTextStyle.copyWith(
+                      fontSize: 16,
                     ),
-                    SizedBox(
-                      width: 2,
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: rating >= 4 ? Color(0xffFFAB2E) : lightGreyColor,
-                      size: 18,
-                    ),
-                    SizedBox(
-                      width: 2,
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: rating >= 6 ? Color(0xffFFAB2E) : lightGreyColor,
-                      size: 18,
-                    ),
-                    SizedBox(
-                      width: 2,
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: rating >= 8 ? Color(0xffFFAB2E) : lightGreyColor,
-                      size: 18,
-                    ),
-                    SizedBox(
-                      width: 2,
-                    ),
-                    Icon(
-                      Icons.star,
-                      color: rating >= 10 ? Color(0xffFFAB2E) : lightGreyColor,
-                      size: 18,
-                    ),
-                    SizedBox(
-                      width: 2,
-                    ),
-                  ],
-                )
-              ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.star,
+                        color: movieList.voteAverage >= 2
+                            ? Color(0xffFFAB2E)
+                            : lightGreyColor,
+                        size: 18,
+                      ),
+                      SizedBox(
+                        width: 2,
+                      ),
+                      Icon(
+                        Icons.star,
+                        color: movieList.voteAverage >= 4
+                            ? Color(0xffFFAB2E)
+                            : lightGreyColor,
+                        size: 18,
+                      ),
+                      SizedBox(
+                        width: 2,
+                      ),
+                      Icon(
+                        Icons.star,
+                        color: movieList.voteAverage >= 6
+                            ? Color(0xffFFAB2E)
+                            : lightGreyColor,
+                        size: 18,
+                      ),
+                      SizedBox(
+                        width: 2,
+                      ),
+                      Icon(
+                        Icons.star,
+                        color: movieList.voteAverage >= 8
+                            ? Color(0xffFFAB2E)
+                            : lightGreyColor,
+                        size: 18,
+                      ),
+                      SizedBox(
+                        width: 2,
+                      ),
+                      Icon(
+                        Icons.star,
+                        color: movieList.voteAverage >= 10
+                            ? Color(0xffFFAB2E)
+                            : lightGreyColor,
+                        size: 18,
+                      ),
+                      SizedBox(
+                        width: 2,
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
           ],
         ),
