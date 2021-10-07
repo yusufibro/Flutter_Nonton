@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_nonton/models/movie_list_model.dart';
+import 'package:flutter_nonton/models/movie_model.dart';
 import 'package:flutter_nonton/ui/detail_page.dart';
 import 'package:intl/intl.dart';
 
@@ -11,7 +11,7 @@ class MovieListItem extends StatelessWidget {
   // final DateTime releaseDate;
   // final double rating;
 
-  final MovieListModel movieList;
+  final MovieModel movie;
 
   const MovieListItem({
     Key? key,
@@ -19,7 +19,7 @@ class MovieListItem extends StatelessWidget {
     // required this.title,
     // required this.releaseDate,
     // required this.rating,
-    required this.movieList,
+    required this.movie,
   }) : super(key: key);
 
   @override
@@ -29,7 +29,9 @@ class MovieListItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => DetailPage(),
+            builder: (context) => DetailPage(
+              movie: movie,
+            ),
           ),
         );
       },
@@ -52,7 +54,7 @@ class MovieListItem extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                    movieList.posterPath,
+                    movie.backdropPath,
                   ),
                 ),
               ),
@@ -62,7 +64,7 @@ class MovieListItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    movieList.title,
+                    movie.title,
                     style: blackTextStyle.copyWith(
                       fontSize: 20,
                       fontWeight: extraBold,
@@ -72,7 +74,7 @@ class MovieListItem extends StatelessWidget {
                     height: 4,
                   ),
                   Text(
-                    DateFormat('MMM dd, yyyy').format(movieList.releaseDate),
+                    DateFormat('MMM dd, yyyy').format(movie.releaseDate),
                     style: greyTextStyle.copyWith(
                       fontSize: 16,
                     ),
@@ -84,7 +86,7 @@ class MovieListItem extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.star,
-                        color: movieList.voteAverage >= 2
+                        color: movie.voteAverage >= 2
                             ? Color(0xffFFAB2E)
                             : lightGreyColor,
                         size: 18,
@@ -94,7 +96,7 @@ class MovieListItem extends StatelessWidget {
                       ),
                       Icon(
                         Icons.star,
-                        color: movieList.voteAverage >= 4
+                        color: movie.voteAverage >= 4
                             ? Color(0xffFFAB2E)
                             : lightGreyColor,
                         size: 18,
@@ -104,7 +106,7 @@ class MovieListItem extends StatelessWidget {
                       ),
                       Icon(
                         Icons.star,
-                        color: movieList.voteAverage >= 6
+                        color: movie.voteAverage >= 6
                             ? Color(0xffFFAB2E)
                             : lightGreyColor,
                         size: 18,
@@ -114,7 +116,7 @@ class MovieListItem extends StatelessWidget {
                       ),
                       Icon(
                         Icons.star,
-                        color: movieList.voteAverage >= 8
+                        color: movie.voteAverage >= 8
                             ? Color(0xffFFAB2E)
                             : lightGreyColor,
                         size: 18,
@@ -124,7 +126,7 @@ class MovieListItem extends StatelessWidget {
                       ),
                       Icon(
                         Icons.star,
-                        color: movieList.voteAverage >= 10
+                        color: movie.voteAverage >= 10
                             ? Color(0xffFFAB2E)
                             : lightGreyColor,
                         size: 18,

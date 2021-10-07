@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nonton/blocs/home/home_bloc.dart';
-import 'package:flutter_nonton/blocs/home_list/home_list_bloc.dart';
 import 'package:flutter_nonton/main.dart';
 import 'package:flutter_nonton/services/movie_service.dart';
 import 'package:flutter_nonton/theme.dart';
@@ -100,7 +99,7 @@ class HomePage extends StatelessWidget {
                         //     releaseDate: DateTime(2020, 5, 17),
                         //   ),
                         // ],
-                        children: state.data
+                        children: state.nowPlayingMovies
                             .map((e) => MovieCarouselItem(movie: e))
                             .toList(),
                       ),
@@ -112,7 +111,7 @@ class HomePage extends StatelessWidget {
                         bottom: 20,
                       ),
                       child: Text(
-                        'From Disney',
+                        'From Top Rated',
                         style: blackTextStyle.copyWith(
                           fontSize: 20,
                           fontWeight: black,
@@ -137,27 +136,10 @@ class HomePage extends StatelessWidget {
                     //   releaseDate: DateTime(2021, 4, 24),
                     //   rating: 8,
                     // ),
-                    BlocBuilder<HomeListBloc, HomeListState>(
-                      builder: (context, state) {
-                        if (state is HomeListLoading) {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-
-                        if (state is HomeListSuccess) {
-                          return SingleChildScrollView(
-                            child: Column(
-                              children: state.listMovie
-                                  .map((e) => MovieListItem(movieList: e))
-                                  .toList(),
-                            ),
-                          );
-                        }
-                        return Center(
-                          child: Text('Data Tidak Ada'),
-                        );
-                      },
+                    Column(
+                      children: state.topRatedMovies
+                          .map((e) => MovieListItem(movie: e))
+                          .toList(),
                     ),
                   ],
                 ),

@@ -28,7 +28,9 @@ class MovieCarouselItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => DetailPage(),
+            builder: (context) => DetailPage(
+              movie: movie,
+            ),
           ),
         );
       },
@@ -47,7 +49,7 @@ class MovieCarouselItem extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                    movie.posterPath,
+                    movie.backdropPath,
                   ),
                 ),
               ),
