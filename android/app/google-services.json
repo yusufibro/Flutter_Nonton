@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "60014430505",
+    "project_id": "movie-a3592",
+    "storage_bucket": "movie-a3592.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:60014430505:android:bdbb2d72e75ee258988f38",
+        "android_client_info": {
+          "package_name": "com.yusufibro.flutter_nonton"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "60014430505-4ro15i7etvsc2v52qrl9g7qadl7647uk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBN1ck_q-Gg8eH0e_vEL4p4l79dFxWNc8g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "60014430505-4ro15i7etvsc2v52qrl9g7qadl7647uk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
